@@ -20,31 +20,31 @@
 					<p class="page_back_text"><a href="<?php echo get_post_type_archive_link( 'event' ); ?>">&lt; イベント情報一覧に戻る</a></p>
 				</div>
 			</div>
-
-			<!--customer_navi-->
-
+			
+			<!--customer_navi--> 
+			
 			<!--event_syousai_area-->
     	<div class="contents_box png">
         <div class="wrap2 png">
           <div class="box2 png">
 
 			<div id="event_syousai_area">
-
+				
 				<!--event_content01-->
-				<div id="event_content01">
-
+				<div id="event_content01"> 
+					
 					<!--event_content01_m-->
 					<div id="event_content01_m">
 						<h3 id="event_syousai_title01">
 							<?php the_title(); ?>
 						</h3>
-
+						
 						<!--event_content01_textarea01-->
 						<div id="event_content01_textarea01" class="clearfix">
 							<div id="event_content01_textarea01_left">
 								<p>開催日：<?php echo post_custom( 'イベント日時' ); ?><br />
 									開催時間：<?php echo post_custom( 'イベント時間' ); ?><br />
-									<?php
+									<?php 
 									$place1 = post_custom('イベント開催場所 1');
 									$place2 = post_custom('イベント開催場所 2');
 									$map1   = post_custom('イベントマップ 1');
@@ -65,13 +65,13 @@
 							</div>
 						</div>
 						<!--event_content01_textarea01-->
-
-
+						
+						
 						<ul class="event_icon_list clearfix">
-						<?php
+						<?php 
 							$my_cat_name = array( "入場無料", "無料相談", "土地相談", "ローン相談", "設計士相談", "お値打商品有" );
 							if ( $my_check_cat = post_custom( 'イベントカテゴリ01' ) ) {
-
+	
 								//配列に変換(splitはPHP5.3.0から非推奨)
 								$my_check_cat = explode( ",", $my_check_cat );
 								foreach ( $my_cat_name as $key=>$val ) {
@@ -83,12 +83,12 @@
 							}
 							?>
                         </ul>
-
+                        
                         <ul class="event_icon_list clearfix">
-							<?php
+							<?php 
 							$my_cat_name = array( "キッチン", "洗面台", "給湯器", "トイレ", "お風呂", "玄関ドア" );
 							if ( $my_check_cat = post_custom( 'event_category02' ) ) {
-
+		
 								//配列に変換(splitはPHP5.3.0から非推奨)
 								$my_check_cat = explode( ",", $my_check_cat );
 								foreach ( $my_cat_name as $key=>$val ) {
@@ -100,63 +100,47 @@
 							}
 							?>
                         </ul>
-
+						
 						<p class="pic">
 							<?php
-           				printf(
+           				printf( 
 							'<a href="%1$s" rel="lightbox[okyakus]">%2$s</a>',
-							gr_get_image_src( 'イベントメイン画像' ),
-							gr_get_image(
-								'イベントメイン画像',
-								array(
+							gr_get_image_src( 'イベントメイン画像' ), 
+							gr_get_image( 
+								'イベントメイン画像', 
+								array( 
 									'size' => full,
 								)
 							)
 						);
 						?>
+						
+								<?php if ( post_custom('イベント画像インポート用メイン') ) : ?>
 
-            <?php if(get_post_meta($post->ID, 'イベント画像インポート用メイン', true)): ?>
-            <?php echo wp_get_attachment_image(get_post_meta($post->ID, 'イベント画像インポート用メイン', true),'medium'); ?>
-            <?php else : ?>
-            <?php endif; ?>
-
-								<?php //if ( post_custom('イベント画像インポート用メイン') ) : ?>
-
-									  <!-- <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/protimes/page_image<?php echo post_custom( 'イベント画像インポート用メイン' ); ?>" border="0"></a> -->
-	<?php //endif; ?>
-
+									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/gaiheki/page_image<?php echo post_custom( 'イベント画像インポート用メイン' ); ?>" border="0"></a>
+	<?php endif; ?>
+						
 						</p>
-
+						
 						<p>
 							<?php echo post_custom('イベントメイン画像説明文') ?>
 						</p>
 
-							<?php if ( post_custom('イベント画像01')||post_custom('イベント画像0②')||post_custom('イベント画像03') ) : ?>
+							<?php if ( post_custom('イベント画像01')||post_custom('event_img02')||post_custom('event_img03') ) : ?>
 							<div class="event_triplebox">
 								<div class="box01">
 									<p class="pic">
-
-                    <?php if(get_post_meta($post->ID, 'イベント画像01', true)): ?>
-  									<?php echo wp_get_attachment_image(get_post_meta($post->ID, 'イベント画像01', true),'medium'); ?>
-  									<?php else : ?>
-                    <?php endif; ?>
-
-									 <?php
-									 // $imagefield = get_imagefield('イベント画像01');
-									 // $attachment = get_attachment_object($imagefield['id']);
-									 // echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
+									
+									 <?php							
+									 $imagefield = get_imagefield('イベント画像01');
+									 $attachment = get_attachment_object($imagefield['id']);
+									 echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
 									 ?>
+									 		<?php if ( post_custom('CSVイベント画像1') ) : ?>
 
-                   <?php if(get_post_meta($post->ID, 'CSVイベント画像1', true)): ?>
-                   <?php echo wp_get_attachment_image(get_post_meta($post->ID, 'CSVイベント画像1', true),'medium'); ?>
-                   <?php else : ?>
-                   <?php endif; ?>
-
-									 		<?php //if ( post_custom('CSVイベント画像1') ) : ?>
-
-									  <!-- <a href="<?php //echo get_permalink(); ?>"><img src="<?php //echo site_url(); ?>/wp-content/themes/protimes/page_image<?php //echo post_custom( 'CSVイベント画像1' ); ?>" border="0"></a> -->
-	<?php //endif; ?>
-
+									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/gaiheki/page_image<?php echo post_custom( 'CSVイベント画像1' ); ?>" border="0"></a>
+	<?php endif; ?>
+									 
 									</p>
 									<p><?php echo post_custom('イベント画像説明文01') ?></p>
 								</div>
@@ -164,27 +148,16 @@
 								<div class="box02">
 									<p class="pic">
 
-                    <?php if(get_post_meta($post->ID, 'イベント画像02', true)): ?>
-  									<?php echo wp_get_attachment_image(get_post_meta($post->ID, 'イベント画像02', true),'medium'); ?>
-  									<?php else : ?>
-                    <?php endif; ?>
-
-									 <?php
-									 // $imagefield = get_imagefield('イベント画像02');
-									 // $attachment = get_attachment_object($imagefield['id']);
-									 // echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
+									 <?php							
+									 $imagefield = get_imagefield('イベント画像02');
+									 $attachment = get_attachment_object($imagefield['id']);
+									 echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
 									 ?>
+									 		<?php if ( post_custom('CSVイベント画像2') ) : ?>
 
-                   <?php if(get_post_meta($post->ID, 'CSVイベント画像2', true)): ?>
-                   <?php echo wp_get_attachment_image(get_post_meta($post->ID, 'CSVイベント画像2', true),'medium'); ?>
-                   <?php else : ?>
-                   <?php endif; ?>
-
-									 		<?php //if ( post_custom('CSVイベント画像2') ) : ?>
-
-									  <!-- <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/protimes/page_image<?php echo post_custom( 'CSVイベント画像2' ); ?>" border="0"></a> -->
-	<?php //endif; ?>
-
+									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/gaiheki/page_image<?php echo post_custom( 'CSVイベント画像2' ); ?>" border="0"></a>
+	<?php endif; ?>
+									 
 </p>
 									<p><?php echo post_custom('イベント画像説明文02') ?></p>
 								</div>
@@ -193,26 +166,14 @@
 								<div class="box03">
 									<p class="pic">
 
-                    <?php if(get_post_meta($post->ID, 'イベント画像03', true)): ?>
-  									<?php echo wp_get_attachment_image(get_post_meta($post->ID, 'イベント画像03', true),'medium'); ?>
-  									<?php else : ?>
-                    <?php endif; ?>
+									 <?php							
+									 $imagefield = get_imagefield('イベント画像03');
+									 $attachment = get_attachment_object($imagefield['id']);
+									 echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
+									 ?>		<?php if ( post_custom('CSVイベント画像3') ) : ?>
 
-									 <?php
-									 // $imagefield = get_imagefield('イベント画像03');
-									 // $attachment = get_attachment_object($imagefield['id']);
-									 // echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
-									 ?>
-
-                   <?php if(get_post_meta($post->ID, 'CSVイベント画像3', true)): ?>
-                   <?php echo wp_get_attachment_image(get_post_meta($post->ID, 'CSVイベント画像3', true),'medium'); ?>
-                   <?php else : ?>
-                   <?php endif; ?>
-
-                   <?php //if ( post_custom('CSVイベント画像3') ) : ?>
-
-									  <!-- <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/protimes/page_image<?php echo post_custom( 'CSVイベント画像3' ); ?>" border="0"></a> -->
-	<?php //endif; ?>
+									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/gaiheki/page_image<?php echo post_custom( 'CSVイベント画像3' ); ?>" border="0"></a>
+	<?php endif; ?>
 </p>
 									<p><?php echo post_custom('イベント画像説明文03') ?></p>
 								</div>
@@ -226,22 +187,17 @@
 							<div class="event_triplebox">
 								<div class="box01">
 									<p class="pic">
-
-                  <?php if(get_post_meta($post->ID, 'イベント画像04', true)): ?>
-									<?php echo wp_get_attachment_image(get_post_meta($post->ID, 'イベント画像04', true),'medium'); ?>
-									<?php else : ?>
-                  <?php endif; ?>
-
-									 <?php
-									 //$imagefield = get_imagefield('イベント画像04');
-									 //$attachment = get_attachment_object($imagefield['id']);
-									 //echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
+									
+									 <?php							
+									 $imagefield = get_imagefield('イベント画像04');
+									 $attachment = get_attachment_object($imagefield['id']);
+									 echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
 									 ?>
 									 		<?php if ( post_custom('CSVイベント画像4') ) : ?>
 
-									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/protimes/page_image<?php echo post_custom( 'CSVイベント画像4' ); ?>" border="0"></a>
+									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/gaiheki/page_image<?php echo post_custom( 'CSVイベント画像4' ); ?>" border="0"></a>
 	<?php endif; ?>
-
+									 
 									</p>
 									<p><?php echo post_custom('イベント画像説明文04') ?></p>
 								</div>
@@ -249,21 +205,16 @@
 								<div class="box02">
 									<p class="pic">
 
-                    <?php if(get_post_meta($post->ID, 'イベント画像05', true)): ?>
-  									<?php echo wp_get_attachment_image(get_post_meta($post->ID, 'イベント画像05', true),'medium'); ?>
-  									<?php else : ?>
-                    <?php endif; ?>
-
-									 <?php
-									 // $imagefield = get_imagefield('イベント画像05');
-									 // $attachment = get_attachment_object($imagefield['id']);
-									 // echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
+									 <?php							
+									 $imagefield = get_imagefield('イベント画像05');
+									 $attachment = get_attachment_object($imagefield['id']);
+									 echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
 									 ?>
 									 		<?php if ( post_custom('CSVイベント画像5') ) : ?>
 
-									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/protimes/page_image<?php echo post_custom( 'CSVイベント画像5' ); ?>" border="0"></a>
+									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/gaiheki/page_image<?php echo post_custom( 'CSVイベント画像5' ); ?>" border="0"></a>
 	<?php endif; ?>
-
+									 
 </p>
 									<p><?php echo post_custom('CSVイベント画像5') ?></p>
 								</div>
@@ -272,18 +223,13 @@
 								<div class="box03">
 									<p class="pic">
 
-                    <?php if(get_post_meta($post->ID, 'イベント画像06', true)): ?>
-  									<?php echo wp_get_attachment_image(get_post_meta($post->ID, 'イベント画像06', true),'medium'); ?>
-  									<?php else : ?>
-                    <?php endif; ?>
-
-									 <?php
-									 // $imagefield = get_imagefield('イベント画像06');
-									 // $attachment = get_attachment_object($imagefield['id']);
-									 // echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
+									 <?php							
+									 $imagefield = get_imagefield('イベント画像06');
+									 $attachment = get_attachment_object($imagefield['id']);
+									 echo '<a href="' . $attachment['url'] . '" rel="lightbox[okyakus]"><image src="' . $attachment['url'] . '" alt="' . $attachment['title'] . '" title="' . $attachment['content'] . '" /></a>';
 									 ?>		<?php if ( post_custom('CSVイベント画像6') ) : ?>
 
-									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/protimes/page_image<?php echo post_custom( 'CSVイベント画像6' ); ?>" border="0"></a>
+									  <a href="<?php echo get_permalink(); ?>"><img src="<?php echo site_url(); ?>/wp-content/themes/gaiheki/page_image<?php echo post_custom( 'CSVイベント画像6' ); ?>" border="0"></a>
 	<?php endif; ?>
 </p>
 									<p><?php echo post_custom('イベント画像説明文06') ?></p>
@@ -292,7 +238,7 @@
 							</div>
 							<?php endif ?>
 
-
+						
 						<?php if ( post_custom('イベント概要') ) : ?>
 						<h4><img src="<?php echo get_stylesheet_directory_uri(); ?>/event/event_syousai_title01.gif" alt="イベント概要" width="669" height="67" /></h4>
 						<div id="event_content01_textarea02" class="clearfix">
@@ -317,12 +263,12 @@
 -->						</div>
 						<?php endif ?>
 					</div>
-					<!--event_content01_m-->
-
+					<!--event_content01_m--> 
+					
 				</div>
 				<!--event_content01-->
-
-
+				
+				
 				<!--event_content02-->
 				<?php if ( post_custom('イベント報告') ) : ?>
 				<div id="event_content02">
@@ -332,8 +278,8 @@
 					</div>
 				</div>
 				<?php endif ?>
-				<!--event_content02-->
-
+				<!--event_content02--> 
+				
 			</div>
 			<!--event_syousai_area-->
 
@@ -350,9 +296,9 @@
 </div>
 </div>
 </div>
+			
 
-
-
+            
 		<br style="clear:both;" />
     <?php get_kaiyutoiawase(); ?>
 </div>
